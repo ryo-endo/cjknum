@@ -1,6 +1,6 @@
 package cjknum
 
-var characters = map[int]string{
+var digits = map[int]string{
 	1: "一",
 	2: "二",
 	3: "三",
@@ -12,9 +12,22 @@ var characters = map[int]string{
 	9: "九",
 }
 
+const _10position = "十"
+
 func Itoc(i int) (cjk string, err error) {
 	err = nil
-	cjk = characters[i]
+	cjk = ""
+
+	digit := (i / 10) % 10
+	if digit > 0 {
+		if digit >= 2 {
+			cjk += digits[digit]
+		}
+		cjk += _10position
+	}
+
+	digit = i % 10
+	cjk += digits[digit]
 
 	return
 }
