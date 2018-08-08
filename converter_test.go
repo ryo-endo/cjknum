@@ -11,6 +11,7 @@ func TestDigit(t *testing.T) {
 		num int
 		cjk string
 	}{
+		{0, "零"},
 		{1, "一"},
 		{9, "九"},
 	}
