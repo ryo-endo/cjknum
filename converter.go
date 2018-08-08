@@ -13,7 +13,10 @@ var digits = map[int]string{
 	9: "九",
 }
 
-const _10position = "十"
+var digitsBase = map[int]string{
+	10:  "十",
+	100: "百",
+}
 
 func Itoc(i int) (cjk string, err error) {
 	err = nil
@@ -23,17 +26,30 @@ func Itoc(i int) (cjk string, err error) {
 		return digits[0], nil
 	}
 
-	digit := (i / 10) % 10
+	// 1 ... 9
+	digit := i % 10
 	if digit > 0 {
-		if digit >= 2 {
-			cjk += digits[digit]
-		}
-		cjk += _10position
+		cjk = digits[digit]
 	}
 
-	digit = i % 10
-	if digit > 0 {
-		cjk += digits[digit]
+	// 10 ... n
+	for base, c := range digitsBase {
+		if (i / base) == 0 {
+			break
+		}
+
+		// get the number of base position
+		n := (i / base) % 10
+
+		s := ""
+		if n >= 2 {
+			s = digits[n]
+		}
+		if n > 0 {
+			s += c
+		}
+
+		cjk = s + cjk
 	}
 
 	return
