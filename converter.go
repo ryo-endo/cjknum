@@ -11,37 +11,27 @@ var digitsBases = []struct {
 	{1000, "千"},
 }
 
-var bases = []string{"万"}
+var unitBases = []string{"", "万"}
 
+// Itoc returns the CJK numeric representation of i
 func Itoc(i int) (cjk string, err error) {
-	// 0 ... 9999
-	cjk, err = thousandsUnits(i)
-	if err != nil {
-		return "", err
-	}
+	for _, baseChar := range unitBases {
+		unit, err := convertUnit(i)
+		if err != nil {
+			return "", err
+		}
+		cjk = unit + baseChar + cjk
 
-	// 10000 ... n
-	for _, baseChar := range bases {
 		i = i / 10000
 		if i == 0 {
 			break
 		}
-
-		unit, err := thousandsUnits(i)
-		if err != nil {
-			return "", err
-		}
-
-		cjk = unit + baseChar + cjk
 	}
 
 	return
 }
 
-func thousandsUnits(i int) (cjk string, err error) {
-	err = nil
-	cjk = ""
-
+func convertUnit(i int) (cjk string, err error) {
 	if i == 0 {
 		return digits[0], nil
 	}
