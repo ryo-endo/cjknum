@@ -8,6 +8,7 @@ var digitsBases = []struct {
 }{
 	{10, "十"},
 	{100, "百"},
+	{1000, "千"},
 }
 
 func Itoc(i int) (cjk string, err error) {
