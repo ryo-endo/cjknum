@@ -84,3 +84,22 @@ func Test1000Position(t *testing.T) {
 	}
 
 }
+
+func Test10000Position(t *testing.T) {
+	cases := []struct {
+		num int
+		cjk string
+	}{
+		{10000, "一万"},
+		{12345678, "千二百三十四万五千六百七十八"},
+		{99999999, "九千九百九十九万九千九百九十九"},
+	}
+
+	for _, c := range cases {
+		s, err := cjknum.Itoc(c.num)
+		if (strings.Compare(s, c.cjk) != 0) || (err != nil) {
+			t.Errorf("Itoc(%v) = %v want %v", c.num, s, c.cjk)
+		}
+	}
+
+}
