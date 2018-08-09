@@ -1,21 +1,13 @@
 package cjknum
 
-var digits = map[int]string{
-	0: "零",
-	1: "一",
-	2: "二",
-	3: "三",
-	4: "四",
-	5: "五",
-	6: "六",
-	7: "七",
-	8: "八",
-	9: "九",
-}
+var digits = []string{"零", "一", "二", "三", "四", "五", "六", "七", "八", "九"}
 
-var digitsBase = map[int]string{
-	10:  "十",
-	100: "百",
+var digitsBases = []struct {
+	n int
+	c string
+}{
+	{10, "十"},
+	{100, "百"},
 }
 
 func Itoc(i int) (cjk string, err error) {
@@ -33,20 +25,20 @@ func Itoc(i int) (cjk string, err error) {
 	}
 
 	// 10 ... n
-	for base, c := range digitsBase {
-		if (i / base) == 0 {
+	for _, base := range digitsBases {
+		if (i / base.n) == 0 {
 			break
 		}
 
 		// get the number of base position
-		n := (i / base) % 10
+		n := (i / base.n) % 10
 
 		s := ""
 		if n >= 2 {
 			s = digits[n]
 		}
 		if n > 0 {
-			s += c
+			s += base.c
 		}
 
 		cjk = s + cjk
