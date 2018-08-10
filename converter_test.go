@@ -2,6 +2,7 @@ package cjknum_test
 
 import (
 	"cjknum"
+	"math"
 	"strings"
 	"testing"
 )
@@ -29,6 +30,7 @@ func TestConvert(t *testing.T) {
 		{10000, "一万"},
 		{12345678, "千二百三十四万五千六百七十八"},
 		{99999999, "九千九百九十九万九千九百九十九"},
+		{math.MaxUint64, "千八百四十四京六千七百四十四兆七百三十七億九百五十五万千六百十五"},
 	}
 
 	for _, c := range cases {

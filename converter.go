@@ -11,7 +11,7 @@ var digitsBases = []struct {
 	{1000, "千"},
 }
 
-var unitBases = []string{"", "万"}
+var unitBases = []string{"", "万", "億", "兆", "京"}
 
 // Itoc returns the CJK numeric representation of i
 func Itoc(i uint64) (cjk string, err error) {
