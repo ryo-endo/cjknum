@@ -14,12 +14,9 @@ var digitsBases = []struct {
 var unitBases = []string{"", "万", "億", "兆", "京"}
 
 // Itoc returns the CJK numeric representation of i
-func Itoc(i uint64) (cjk string, err error) {
+func Itoc(i uint64) (cjk string) {
 	for _, baseChar := range unitBases {
-		unit, err := convertUnit(i)
-		if err != nil {
-			return "", err
-		}
+		unit := convertUnit(i)
 		cjk = unit + baseChar + cjk
 
 		i = i / 10000
@@ -31,9 +28,9 @@ func Itoc(i uint64) (cjk string, err error) {
 	return
 }
 
-func convertUnit(i uint64) (cjk string, err error) {
+func convertUnit(i uint64) (cjk string) {
 	if i == 0 {
-		return digits[0], nil
+		return digits[0]
 	}
 
 	// 1 ... 9

@@ -34,8 +34,8 @@ func TestConvert(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		s, err := cjknum.Itoc(c.num)
-		if (strings.Compare(s, c.cjk) != 0) || (err != nil) {
+		s := cjknum.Itoc(c.num)
+		if strings.Compare(s, c.cjk) != 0 {
 			t.Errorf("Itoc(%v) = %v want %v", c.num, s, c.cjk)
 		}
 	}
