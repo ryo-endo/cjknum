@@ -3,7 +3,7 @@ package cjknum
 var digits = []string{"零", "一", "二", "三", "四", "五", "六", "七", "八", "九"}
 
 var digitsBases = []struct {
-	n int
+	n uint64
 	c string
 }{
 	{10, "十"},
@@ -14,7 +14,7 @@ var digitsBases = []struct {
 var unitBases = []string{"", "万"}
 
 // Itoc returns the CJK numeric representation of i
-func Itoc(i int) (cjk string, err error) {
+func Itoc(i uint64) (cjk string, err error) {
 	for _, baseChar := range unitBases {
 		unit, err := convertUnit(i)
 		if err != nil {
@@ -31,7 +31,7 @@ func Itoc(i int) (cjk string, err error) {
 	return
 }
 
-func convertUnit(i int) (cjk string, err error) {
+func convertUnit(i uint64) (cjk string, err error) {
 	if i == 0 {
 		return digits[0], nil
 	}
