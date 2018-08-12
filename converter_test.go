@@ -1,7 +1,6 @@
-package cjknum_test
+package cjknum
 
 import (
-	"cjknum"
 	"math"
 	"strings"
 	"testing"
@@ -34,7 +33,7 @@ func TestConvert(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		s := cjknum.Itoc(c.num)
+		s := Itoc(c.num)
 		if strings.Compare(s, c.cjk) != 0 {
 			t.Errorf("Itoc(%v) = %v want %v", c.num, s, c.cjk)
 		}
