@@ -1,6 +1,9 @@
 cjknum
 =======
 
+[![CircleCI](https://circleci.com/gh/ryo-endo/cjknum.svg?style=svg)](https://circleci.com/gh/ryo-endo/cjknum)
+[![Coverage Status](https://coveralls.io/repos/github/ryo-endo/cjknum/badge.svg)](https://coveralls.io/github/ryo-endo/cjknum)
+
 ## Description
 
 Package cjknum implements conversions to the CJK numeric string representations of integer.
